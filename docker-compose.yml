@@ -1,0 +1,41 @@
+version: '3'
+services:
+  dbnode:
+    image: mariadb:latest
+    restart: always
+    environment:
+      #      tagged values exist in .env file, .env file added to .gitignore
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_TCP_PORT: 3306
+#    volumes:
+#      - ${PWD}/mariadb:/var/lib/mysql
+    networks:
+      - back
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - back
+  webserver:
+    depends_on:
+      - dbnode
+    image: phpstorm/php-71-apache-xdebug
+    ports:
+      - "80:80"
+    volumes:
+      - './:/var/www/html/'
+      - './php/conf.d/docker-php-ext-pdo.ini:/usr/local/etc/php/conf.d/docker-php-ext-pdo.ini'
+      - './php/conf.d/docker-php-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-xdebug.ini'
+    networks:
+      - front
+      - back
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+networks:
+  front:
+  back:
