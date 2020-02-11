@@ -19,7 +19,7 @@ class View
     public static function render(string $path, array $data = [])
     {
         // Получаем путь, где лежат все представления
-        $fullPath = __DIR__ . '/../Views/' . $path . '.php';
+        $fullPath = __DIR__ . '/../Views/' . $path . 'View.php';
         
         // Если представление не было найдено, выбрасываем исключение
         if (!file_exists($fullPath)) {

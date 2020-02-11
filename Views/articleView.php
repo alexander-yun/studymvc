@@ -4,7 +4,8 @@
  */
 
 ?>
-
+<a class="btn" id="link_add_news" href="/article/show"><button type="submit">Добавить новость</button></a>
+<a class="btn" id="link_add_news" href="/news/list"><button type="submit">показать все новости</button></a>
 <h2>Новость</h2>
 <div class="news-block">
         <div class="news-item" style="  border: 1px solid black">

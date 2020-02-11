@@ -29,40 +29,44 @@ class Article
 
     public function load() :self{
         $pdo = \Models\Db::connectDB();
+
         $sql = "SELECT * FROM news WHERE id=$this->id";
         $arr = ($pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC))[0];
         return new Article($arr['id'],$arr['title'],$arr['description']);
     }
 
 
-    //
+    // add or update an items
     public function submit()
     {
         $pdo = \Models\Db::connectDB();
-        $data = [];
-        $sql='';
+//        $data = [];
+        $stmt=null;
 
         if ($this->id ===''){
-            $data = [
-                'title' => $this->title,
-                'description' => $this->description
-            ];
-            $sql = "INSERT INTO news (id, title, description) VALUES (:id, :title, :text)";
+            #assume we add new item
+            $sql=$this->add();
+            $stmt= $pdo->prepare($sql);
         }
-
         else {
-            $data = [
-                'id' => $this->id,
-                'title' => $this->title,
-                'description' => $this->description
-            ];
-            $sql = "UPDATE news (title, description) VALUES (:title, :text)";
-
+            //assume we update an item
+            $sql = $this->update();
+            $stmt= $pdo->prepare($sql);
+            $stmt->bindParam(':id',$this->id);
         }
-        $stmt= $pdo->prepare($sql);
-        $stmt->execute($data);
+        $stmt->bindParam(':title',$this->title);
+        $stmt->bindParam(':description',$this->description);
+        $stmt->execute();
     }
 
+    private function add(){
+        $sql = "INSERT INTO news (title, description) VALUES (:title, :description)";
+        return $sql;
+    }
+    private function update(){
+        $sql = "UPDATE news set title=:title , description=:description WHERE id=:id";
+        return $sql;
+    }
 
     /**
      * Эта функция удаляет статью из базы по ее индексу

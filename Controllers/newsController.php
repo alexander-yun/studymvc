@@ -16,7 +16,6 @@ class newsController
 
         // Получаем данные используя модель
         $data = $model->displayAll();
-
         // Передаем данные представлению для их отображения
         View::render('news', [
             'data' => $data,

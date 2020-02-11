@@ -7,20 +7,30 @@ namespace Controllers;
 use System\View;
 
 class articleController
+// контроллер статья
 {
     public function actionShow(){
-        $objArticle = new \Models\Article(htmlspecialchars($_POST["articleId"]), null, null);
-        $objArticle = $objArticle->load();
-        $data = $objArticle->getData();
+        $objArticle = null;
+        $data = [];
+        if (!empty($_POST["articleId"])){
+            $objArticle = new \Models\Article(htmlspecialchars($_POST["articleId"]), null, null);
+            $objArticle = $objArticle->load();
+            $data = $objArticle->getData();
+        }
         View::render('article', $data);
     }
     public function actionSubmit(){
-        echo 123;
         $id = htmlentities($_POST["articleId"]);
+
         $title = htmlentities($_POST["title"]);
         $description = htmlentities($_POST["description"]);
+//        if (!empty($_POST["articleId"])){
+//
+//        }
         $objArticle = new \Models\Article( $id, $title, $description);
-        echo 123;
         $objArticle->submit();
+        echo "новость {$title} добавлена";
+
+        View::render('news', []);
     }
 }
