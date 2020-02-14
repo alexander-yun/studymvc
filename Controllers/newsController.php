@@ -23,7 +23,7 @@ class newsController
     }
 
     /**
-     * @author |||barcode|||
+     * @author |||alexander yun|||
      * @input
      * @return
      * @throws \ErrorException
