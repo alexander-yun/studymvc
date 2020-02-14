@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   dbnode:
     image: mariadb:latest
@@ -10,7 +10,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASS}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_TCP_PORT: 3306
-#    volumes:
+    volumes:
+      - './docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql'
 #      - ${PWD}/mariadb:/var/lib/mysql
 #    networks:
 #      - back
@@ -22,15 +23,19 @@ services:
 #    networks:
 #      - back
   webserver:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-php7.4-xdebug2.9-pdo_mysql-rewrite_enabled
+    image: phpstorm/php-74-apache-xdebug-29:latest
     depends_on:
       - dbnode
-    image: phpstorm/php-73-apache-xdebug-27:latest
+#    image: phpstorm/php-73-apache-xdebug-27:latest
     ports:
       - "80:80"
     volumes:
       - './:/var/www/html/'
-      - './php/conf.d/docker-php-ext-pdo.ini:/usr/local/etc/php/conf.d/docker-php-ext-pdo.ini'
-      - './php/conf.d/docker-php-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-xdebug.ini'
+#      - './php/conf.d/docker-php-ext-pdo.ini:/usr/local/etc/php/conf.d/docker-php-ext-pdo.ini'
+#      - './php/conf.d/docker-php-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-xdebug.ini'
 #    networks:
 #      - front
 #      - back

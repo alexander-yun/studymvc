@@ -46,7 +46,7 @@ class News
 
 
     /**
-     * Метод удаляющий все вделенные новости
+     * Метод удаляющий все выделенные новости
      * @author |||barcode|||
      * @input array of id's news
      * @return 'xontroller'

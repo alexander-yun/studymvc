@@ -1,0 +1,45 @@
+Studymvc
+* Deploy project
+** Install docker
+[[https://www.docker.com/][official page]]
+
+** Get Project
+git clone ...
+
+** Setup database passwords
+*** move to project folder
+cd ./sudymvc
+
+*** copy enviroment file
+cp .env-sample .env
+
+*** edit enviroment file and defie desired passwords
+vim .env file
+**** sample of .env file
+#+BEGIN_SRC bash
+MYSQL_USER=user
+MYSQL_PASS=pass
+MYSQL_DATABASE=data
+MYSQL_ROOT_PASSWORD=rootpass
+#+END_SRC
+  
+*** copy config.php file
+cp config-sample.php config.php
+
+*** edit config file with your favorite editor and define desired passwords
+vim config.php
+**** sample of config.php
+#+BEGIN_SRC php
+<?php
+define('DB_HOST',   'host');
+define('DB_USER',   'user');
+define('DB_PASS',   'pass');
+define('DB_SCHEMA', 'data'); 
+#+END_SRC
+
+** Run docker
+docker-compose up
+
+** Open browser
+start address is: 
+[[127.0.0.1/home/main][127.0.0.1/home/main]]
