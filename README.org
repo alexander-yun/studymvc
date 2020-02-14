@@ -4,7 +4,7 @@ Studymvc
 [[https://www.docker.com/][official page]]
 
 ** Get Project
-git clone ...
+git clone git@github.com:alexander-yun/studymvc.git
 
 ** Setup database passwords
 *** move to project folder
