@@ -1,6 +1,4 @@
-<?php
-require_once 'head.php';
-?>
+<?php require_once 'head.php';  ?>
 
 <h2>Главная страница</h2>
 

@@ -25,9 +25,7 @@
     float: left;
     vertical-align: center;
     horiz-align: center;
-
 }
-
 .buttons {
     border: none;
     color: white;
@@ -43,6 +41,7 @@
 }
 .buttons:hover{
     opacity: 100%;
+    display: inline-block;
 }
 
 .buttons.delete {
@@ -54,12 +53,12 @@
 }
 
 .button-group {
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    height: 100%;
-    width: auto;
+    /*float: right;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: left;*/
+    /*height: 100%;*/
+    /*width: auto;*/
 }
 
 /*Containers*/
@@ -70,9 +69,9 @@
     padding: 1px;
 }
 .container.buttons{
+    display: inline-block;
     float: left;
     margin: 1px;
-
 }
 .container.news-id{
     float: left;
@@ -84,20 +83,36 @@
 }
 .container.article{
     margin: 10px;
-
 }
-
+.article.input{
+    width: 50%;
+}
 .footer.main{
     border: 1px dotted aqua;
-    position: ;
-    float:bottom;
+    /*position: b;*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /*background-color: red;*/
+    /*color: white;*/
+    text-align: center;
 }
-
 .nav{
     margin: 10px;
     font-size: 20px;
-
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    /*background-color: yellow;*/
+    padding: 20px;
+    border: 1px dashed aqua;
+    display: inline-block;
+}
+.nav-a{
+    text-decoration-line: none;
+    font-variant-caps: all-petite-caps;
 }
 .nav.main{
-    font-variant-caps: all-petite-caps;
+
 }

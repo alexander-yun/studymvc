@@ -39,12 +39,12 @@
             <div class="container">
                 <div class="container buttons">
                     <form action="/news/delete" method="post">
-                        <button type="submit" class="buttons delete" name="articleId" value="<?= $item['id']; ?>">Delete</button>
+                        <button type="submit" class="buttons delete" name="articleId" value="<?= $item['id']; ?>">Удалить</button>
                     </form>
                 </div>
                 <div class="container buttons">
                     <form action="/article/show" method="post">
-                        <button type="submit" class="buttons edit" name="articleId" value="<?= $item['id']; ?>"> Edit </button>
+                        <button type="submit" class="buttons edit" name="articleId" value="<?= $item['id']; ?>">Изменить</button>
                     </form>
                 </div>
             </div>
